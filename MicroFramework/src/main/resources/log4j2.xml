@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Configuration>
+	<Appenders>
+		<File name="File1" fileName="target/logs/result.log">
+			<PatternLayout>
+				<Pattern>%m%n</Pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger level="info" name="logger">
+			<AppenderRef ref="File1"/>
+		</Logger>
+	</Loggers>
+ </Configuration>
