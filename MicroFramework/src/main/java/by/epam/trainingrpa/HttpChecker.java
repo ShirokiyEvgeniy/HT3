@@ -53,7 +53,7 @@ public class HttpChecker {
             failedTests++;
             return false;
         }
-        logger.info("+ [open \"" + url.toString() + "\" \"" + timeout + "\"] " + (double)(end - start) / 1000.0);
+        logger.info("+ [open \"" + url.toString() + "\" \"" + timeout + "\"] " + (double) (end - start) / 1000.0);
         passedTests++;
         totalTime += end - start;
         return true;
@@ -65,10 +65,10 @@ public class HttpChecker {
         long end = System.currentTimeMillis();
         totalTime += end - start;
         if (flag) {
-            logger.info("+ [checkPageTitle \"" + title + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("+ [checkPageTitle \"" + title + "\"] " + (double) (end - start) / 1000.0);
             passedTests++;
         } else {
-            logger.info("! [checkPageTitle \"" + title + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("! [checkPageTitle \"" + title + "\"] " + (double) (end - start) / 1000.0);
             failedTests++;
         }
         return flag;
@@ -80,10 +80,10 @@ public class HttpChecker {
         long end = System.currentTimeMillis();
         totalTime += end - start;
         if (flag) {
-            logger.info("+ [checkPageContains \"" + text + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("+ [checkPageContains \"" + text + "\"] " + (double) (end - start) / 1000.0);
             passedTests++;
         } else {
-            logger.info("! [checkPageContains \"" + text + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("! [checkPageContains \"" + text + "\"] " + (double) (end - start) / 1000.0);
             failedTests++;
         }
         return flag;
@@ -97,10 +97,10 @@ public class HttpChecker {
         long end = System.currentTimeMillis();
         totalTime += end - start;
         if (flag) {
-            logger.info("+ [checkLinkPresentByHref \"" + href + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("+ [checkLinkPresentByHref \"" + href + "\"] " + (double) (end - start) / 1000.0);
             passedTests++;
         } else {
-            logger.info("! [checkLinkPresentByHref \"" + href + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("! [checkLinkPresentByHref \"" + href + "\"] " + (double) (end - start) / 1000.0);
             failedTests++;
         }
         return flag;
@@ -114,10 +114,10 @@ public class HttpChecker {
         long end = System.currentTimeMillis();
         totalTime += end - start;
         if (flag) {
-            logger.info("+ [checkLinkPresentByName \"" + linkName + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("+ [checkLinkPresentByName \"" + linkName + "\"] " + (double) (end - start) / 1000.0);
             passedTests++;
         } else {
-            logger.info("! [checkLinkPresentByName \"" + linkName + "\"] " + (double)(end - start) / 1000.0);
+            logger.info("! [checkLinkPresentByName \"" + linkName + "\"] " + (double) (end - start) / 1000.0);
             failedTests++;
         }
         return flag;
