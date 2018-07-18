@@ -2,9 +2,18 @@ package by.epam.trainingrpa.util;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CommandParser {
     private File txtFile;
+
+    private String[] validCommands = {
+            "open",
+            "checkPageTitle",
+            "checkPageContains",
+            "checkLinkPresentByHref",
+            "checkLinkPresentByName"
+    };
 
     public CommandParser(File txtFile) {
         this.txtFile = txtFile;
@@ -50,17 +59,20 @@ public class CommandParser {
         int length;
         String command = line.substring(0, (position = line.indexOf('\"')));
         command = command.trim();
-
-        String value = line.substring(position + 1, (length = line.indexOf('\"', position + 1)));
-        if (((position = line.indexOf('\"', length + 1)) != -1) && command.equals("open")) {
-            String timeout = line.substring(position + 1, line.indexOf('\"', position + 1));
-            if (isInteger(timeout)) {
-                commandList.add(new Command(command, value, timeout));
-            } else {
-                System.out.println("Command line (" + line + ") is incorrect!");
-            }
+        if (!Arrays.toString(validCommands).contains(command)) {
+            System.out.println("Command line (" + line + ") is incorrect!");
         } else {
-            commandList.add(new Command(command, value));
+            String value = line.substring(position + 1, (length = line.indexOf('\"', position + 1)));
+            if (((position = line.indexOf('\"', length + 1)) != -1) && command.equals("open")) {
+                String timeout = line.substring(position + 1, line.indexOf('\"', position + 1));
+                if (isInteger(timeout)) {
+                    commandList.add(new Command(command, value, timeout));
+                } else {
+                    System.out.println("Command line (" + line + ") is incorrect!");
+                }
+            } else {
+                commandList.add(new Command(command, value));
+            }
         }
     }
 }
