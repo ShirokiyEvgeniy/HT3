@@ -1,5 +1,6 @@
 good "staff"
 checkPageContains "Google"
+open "fnrwfnjwrf"
 open "http://svyatoslav.biz/" "1"
 get "it"
 checkPageTitlee "hifhi"

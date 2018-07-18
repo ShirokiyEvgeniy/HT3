@@ -38,8 +38,12 @@ public class HttpCheckerRunner {
         for (Command command : commands) {
             switch (command.getCommand()) {
                 case "open":
-                    opened = true;
-                    checker.open(new URL(command.getValue()), Integer.parseInt(command.getTimeout()));
+                    try {
+                        checker.open(new URL(command.getValue()), Integer.parseInt(command.getTimeout()));
+                        opened = true;
+                    } catch (MalformedURLException e) {
+                        System.out.println("Incorrect URL (" + command.getCommand() + " \"" + command.getValue() + "\")");
+                    }
                     break;
                 case "checkPageTitle":
                     if (opened) {
