@@ -1,5 +1,7 @@
+good "staff"
+checkPageContains "Google"
 open "http://svyatoslav.biz/" "1"
-fuck "it"
+get "it"
 checkPageTitlee "hifhi"
 checkPageTitle "Google"
 checkPageContains "Google"

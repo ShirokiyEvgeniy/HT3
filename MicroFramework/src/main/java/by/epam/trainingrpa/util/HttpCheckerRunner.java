@@ -74,15 +74,14 @@ public class HttpCheckerRunner {
     }
 
     private void logEndMessage() {
-        int totalTests = checker.getFailedTests() + checker.getPassedTests();
         int failedTests = checker.getFailedTests();
         int passedTests = checker.getPassedTests();
+        int totalTests = failedTests + passedTests;
         double totalTime = checker.getTotalTime();
         checker.logMessage("Total tests: " + totalTests);
         checker.logMessage("Passed/Failed: " + passedTests + "/" + failedTests);
         checker.logMessage("Total time: " + totalTime);
         double average = totalTime / totalTests;
-        String averageTimeString = Double.toString(average);
-        checker.logMessage("Average time: " + averageTimeString.substring(0, averageTimeString.indexOf('.') + 4));
+        checker.logMessage("Average time: " + String.format("%.3f", average));
     }
 }
