@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -63,7 +64,7 @@ public class HttpChecker {
      * @param timeout Max time for connection.
      * @param url URL for connection.
      * */
-    public void open(URL url, int timeout) {
+    public boolean open(URL url, int timeout) {
         long start; // time before connection
         long end; // time after connection
         try {
@@ -74,17 +75,23 @@ public class HttpChecker {
             end = System.currentTimeMillis(); // getting time after connection
 
             pageCode = getPageCode(); // getting code of the page
-
-        } catch (IOException e) { // if connection is failed
-            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            System.out.println("Incorrect URL (" + url.toString() + ")");
             logger.info("! [open \"" + url.toString() + "\" \"" + timeout + "\"] " + (double) timeout);
             totalTime += (double) timeout; // because program was waiting for this time
             failedTests++;
-            return;
+            return false;
+        } catch (IOException e) { // if connection is failed
+            System.out.println("Problems with connection (" + url.toString() + ")");
+            logger.info("! [open \"" + url.toString() + "\" \"" + timeout + "\"] " + (double) timeout);
+            totalTime += (double) timeout; // because program was waiting for this time
+            failedTests++;
+            return false;
         }
         logger.info("+ [open \"" + url.toString() + "\" \"" + timeout + "\"] " + (double) (end - start) / 1000.0);
         passedTests++;
         totalTime += (double) (end - start) / 1000.0; // summing time in seconds
+        return true;
     }
 
     /**

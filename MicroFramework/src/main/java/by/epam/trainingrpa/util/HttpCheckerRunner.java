@@ -65,8 +65,10 @@ public class HttpCheckerRunner {
             switch (command.getCommand()) { // switching by command and doing operations
                 case "open":
                     try {
-                        checker.open(new URL(command.getValue()), Integer.parseInt(command.getTimeout()));
-                        opened = true;
+                        boolean result = checker.open(new URL(command.getValue()), Integer.parseInt(command.getTimeout())); // returns == 0 if connection is correct
+                        if (result) {
+                            opened = true;
+                        }
                     } catch (MalformedURLException e) {
                         System.out.println("Incorrect URL (" + command.getCommand() + " \"" + command.getValue() + "\")");
                     }
@@ -113,7 +115,7 @@ public class HttpCheckerRunner {
         double totalTime = checker.getTotalTime(); // total time of run
         checker.logMessage("Total tests: " + totalTests);
         checker.logMessage("Passed/Failed: " + passedTests + "/" + failedTests);
-        checker.logMessage("Total time: " + totalTime);
+        checker.logMessage("Total time: " + String.format("%.3f", totalTime));
         double average = totalTime / totalTests; // average time for one operation
         checker.logMessage("Average time: " + String.format("%.3f", average));
     }
